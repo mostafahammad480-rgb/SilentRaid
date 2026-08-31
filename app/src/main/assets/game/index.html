@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>SILENT RAID — المداهمة الصامتة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="app-shell" aria-label="SILENT RAID — المداهمة الصامتة">
+    <section id="menuScreen" class="screen active heist-menu">
+      <div class="menu-backdrop" aria-hidden="true">
+        <div class="cartoon-city-art"></div>
+        <div class="hero-scrim"></div>
+        <div class="hero-grain"></div>
+        <div class="scan-beam beam-a"></div>
+        <div class="scan-beam beam-b"></div>
+        <div class="police-beacon"></div>
+        <div class="heist-vignette"></div>
+      </div>
+      <div class="menu-topbar">
+        <div class="brand-chip"><span class="brand-mark">SR</span><span>ملف العملية 07</span></div>
+        <div class="menu-clock"><span class="clock-dot"></span><span>الفرع تحت المراقبة</span></div>
+      </div>
+      <div class="heist-title-lockup" aria-label="SILENT RAID">
+        <div class="title-kicker">عملية سرقة متخفية</div>
+        <div class="english-game-logo"><span>SILENT</span><b>RAID</b></div>
+        <div class="arabic-title-sub">المداهمة الصامتة</div>
+        <div class="title-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="menu-actors" aria-hidden="true">
+        <canvas id="menuThiefActor" class="menu-actor menu-actor-thief"></canvas>
+        <canvas id="menuGuardActor" class="menu-actor menu-actor-guard"></canvas>
+      </div>
+      <div class="heist-menu-panel">
+        
+        <div class="menu-actions">
+          <button id="startBtn" class="primary-btn heist-primary"><span>ابدأ المداهمة</span><b>01</b></button>
+          <button id="howBtn" class="secondary-btn heist-secondary"><span class="btn-icon">◎</span><span>طريقة اللعب</span></button>
+        </div>
+        <div class="menu-tip">اجمع المفاتيح • افتح الخزنة • خذ المال • اهرب قبل الإغلاق</div><div class="menu-credit">By : Mostafa Hammad</div>
+      </div>
+      <div class="menu-footer"><span>مدينة القاهرة • فرع البنك المركزي</span><span>لا تترك أثرًا</span></div>
+      <div class="scanlines"></div>
+      <div id="howPanel" class="how-panel glass-panel hidden" role="dialog" aria-modal="true" aria-labelledby="howTitle">
+        <div class="panel-head"><h2 id="howTitle">طريقة اللعب</h2><button id="closeHow" class="icon-btn" aria-label="إغلاق">×</button></div>
+        <div class="how-grid">
+          <div class="how-section"><h3>🎯 الهدف</h3><p>اجمع 3 مفاتيح، افتح الخزنة، ثم اهرب من بوابة الخروج قبل انتهاء الوقت.</p></div>
+          <div class="how-section"><h3>🕹️ التحكم</h3><p><strong>WASD / الأسهم</strong> للحركة على الكمبيوتر. على الهاتف استخدم العصا.</p></div>
+          <div class="how-section"><h3>👁️ التخفي</h3><p>🚶 <strong>الحركة:</strong> توسّع دائرة رؤيتك، فتستطيع رؤية مساحة أكبر أثناء التقدم. 🛑 <strong>الوقوف:</strong> يضيّق دائرة رؤيتك تدريجيًا، فتقل المساحة التي تراها؛ لكنه لا يجعلك غير مرئي للحارس.</p></div>
+          <div class="how-section"><h3>🚨 الحراس والكاميرات</h3><p>إذا رآك حارس أو كاميرا يبدأ الإنذار والمطاردة. <strong>الجدران تحجب رؤية الكاميرات.</strong> ابتعد عن نطاق الرصد حتى تتوقف المطاردة.</p></div>
+          <div class="how-section"><h3>⚠️ المخاطر</h3><p>الزجاج المكسور يلفت الانتباه، وبعض الأبواب تحتاج سرعة للعبور.</p></div>
+          <div class="how-section"><h3>🏦 الخزنة والخروج</h3><p>لا تُفتح الخزنة إلا بعد جمع المفاتيح الثلاثة. افتحها ثم اتجه مباشرة إلى بوابة الهروب.</p></div>
+        </div>
+      </div>
+    </section>
+    <section id="levelSelectScreen" class="screen level-select-screen">
+      <div class="level-select-shell">
+        <div class="level-select-top">
+          <button id="levelsBackBtn" class="icon-btn back-btn" aria-label="العودة للقائمة الرئيسية">←</button>
+          <div>
+            <span class="level-select-kicker">خريطة العملية • 03 مراحل × 05 أدوار</span>
+            <h2>اختر الدور</h2>
+            <p>ابدأ بالدور المفتوح، واجتز كل دور لفتح الدور الذي يليه.</p>
+          </div>
+          <div class="level-select-badge">15<br><span>دور</span></div>
+        </div>
+        <div id="levelSelectGrid" class="level-select-grid"></div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div id="gameWrap" class="game-wrap">
+                <canvas id="gameCanvas" width="800" height="600" aria-label="ملعب المداهمة"></canvas>
+        <div class="hud" aria-live="polite">
+          <div id="levelHud">المرحلة 1 - الدور 1</div>
+          <div id="timerHud">الوقت المتبقي: 00:00</div>
+          <div id="keysHud">المفاتيح: 0/3</div>
+          <div id="chaseHud" class="chase-hud" hidden>⚠ المطاردة نشطة</div>
+        </div>
+        <div class="corner-tools">
+          <button id="restartBtn" class="tool-btn" title="إعادة توليد المستوى">إعادة</button>
+          <button id="levelsBtn" class="tool-btn" title="اختيار دور آخر">الأدوار</button>
+        </div>
+        <div id="messageHud" class="message-hud"></div>
+        <div id="joystick" class="joystick" aria-label="عصا الحركة"><div id="joystickKnob"></div></div>
+      </div>
+    </section>
+
+    <section id="successScreen" class="screen result-screen" aria-hidden="true">
+      <canvas id="successRainCanvas" class="result-rain-canvas" aria-hidden="true"></canvas>
+      <div class="result-panel glass-panel">
+        <div class="result-glyph success money-bag-glyph" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img" aria-label="كيس المال">
+            <path class="bag-strap" d="M39 40c3-18 11-27 21-27s19 9 21 27"/>
+            <path class="bag-neck" d="M39 39c12 5 30 5 42 0l-5 15c-10 7-22 7-32 0z"/>
+            <path class="bag-body" d="M28 48c8-7 56-7 64 0l8 39c-6 19-74 19-80 0z"/>
+            <path class="bag-top" d="M34 49c16 9 36 9 52 0"/>
+            <path class="bag-tie" d="M50 48l-4 11m24-11l4 11M54 54c4 3 8 3 12 0"/>
+            <circle class="bag-coin" cx="60" cy="73" r="14"/>
+            <path class="bag-dollar" d="M60 63v20m7-14c-3-5-14-5-14 1 0 7 14 3 14 10 0 7-12 8-15 1"/>
+            <circle class="bag-coin mini" cx="37" cy="72" r="4.2"/>
+            <circle class="bag-coin mini" cx="83" cy="72" r="4.2"/>
+          </svg>
+        </div>
+        <h2>تمت المداهمة!</h2>
+        <p>تم فتح الخزنة وتأمين المال بنجاح.</p>
+        <div class="result-actions">
+          <button id="nextBtn" class="primary-btn">الدور التالي</button>
+          <button id="successLevelsBtn" class="secondary-btn">العودة للأدوار</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="failureScreen" class="screen result-screen failure-result" aria-hidden="true">
+      <canvas id="failureRainCanvas" class="result-rain-canvas" aria-hidden="true"></canvas>
+      <div class="result-panel glass-panel">
+        <div class="result-glyph failure prison-glyph" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img" aria-label="سجن">
+            <rect x="18" y="18" width="84" height="84" rx="10" class="prison-frame"/>
+            <path class="prison-bars" d="M34 18v84M49 18v84M64 18v84M79 18v84"/>
+            <rect x="83" y="42" width="11" height="15" rx="2" class="prison-lock"/>
+          </svg>
+        </div>
+        <h2>Game over</h2>
+        <p>أحاط بك الأمن وأُغلقت العملية.</p>
+        <div class="result-actions">
+          <button id="retryBtn" class="primary-btn">إعادة المحاولة</button>
+          <button id="failureLevelsBtn" class="secondary-btn">العودة للأدوار</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <link rel="preload" as="audio" href="assets/win-rock.mp3" type="audio/mpeg">
+  <link rel="preload" as="audio" href="assets/main-title.mp3" type="audio/mpeg">
+  <audio id="mainTitleAudio" src="assets/main-title.mp3" preload="auto" autoplay loop playsinline></audio>
+  <script defer src="script.js"></script>
+
+</body>
+</html>

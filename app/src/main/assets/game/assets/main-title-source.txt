@@ -1,0 +1,4 @@
+Requested exact track: Intro - Intro Song — The_Mountain
+Pixabay page: https://pixabay.com/music/main-title-intro-intro-song-576574/
+The project is wired to assets/main-title.mp3. The exact MP3 is intentionally not replaced with a different track.
+On first user interaction, the game unlocks and starts the local track when that file is present; volume is 100%.
